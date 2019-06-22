@@ -49,7 +49,7 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'rgba(0, ' + Math.floor(83 + 50 * i) + ', 138, 1)';
+      ctx.fillStyle = 'rgba(0, ' + Math.floor(83 + 10 * i) + ', 138, 1)';
     }
 
     ctx.fillRect(CLOUD_X + GAP * 5 + (BAR_WIDTH + BAR_DISTANCE) * i, CLOUD_Y + TEXT_HEIGHT + FONT_GAP + (BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime), BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
