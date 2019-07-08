@@ -20,64 +20,64 @@ var fireballColorInput = userDialog.querySelector('input[name=fireball-color]');
 
 // закрытие окна при нажатии эскейп, при условии,
 // что поле ввода имени не находится в фокусе
-var onPopupEscPress = function(evt) {
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE && userDialog.querySelector('.setup-user-name:focus') === null) {
-   closePopup();
+    closePopup();
   }
 };
 
 // открытие окна путем удаления класса хидден,
 // отслеживание события onPopupEscPress
-var openPopup = function() {
+var openPopup = function () {
   userDialog.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
 // закрытие окна путем добавления класса хидден,
 // удаление отслеживания события onPopupEscPress
-var closePopup = function() {
+var closePopup = function () {
   userDialog.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
 // открытие окна по клику на иконку пользователя
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
 // открытие окна нажатием на энтер,если фокус на иконке пользователя
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
 
 // закрытие окна по клику на крестик
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   closePopup();
 });
 
 // закрытие окна нажатием на энтер, если фокус на крестике
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
 
 // изменение цвета мантии по клику
-setupWisardCoatColor.addEventListener('click', function() {
+setupWisardCoatColor.addEventListener('click', function () {
   setupWisardCoatColor.style.fill = getRandomItem(WIZARD_COAT_COLORS);
   coatColorInput.value = setupWisardCoatColor.style.fill;
 });
 
 // изменение цвета глаз по клику
-setupWisardEyesColor.addEventListener('click', function() {
+setupWisardEyesColor.addEventListener('click', function () {
   setupWisardEyesColor.style.fill = getRandomItem(WIZARD_EYES_COLORS);
   eyesColorInput.value = setupWisardEyesColor.style.fill;
 });
 
 // изменение цвета фаербола по клику
-setupFireballColor.addEventListener('click', function() {
+setupFireballColor.addEventListener('click', function () {
   setupFireballColor.style.background = getRandomItem(FIREBALL_COLORS);
   fireballColorInput.value = setupFireballColor.style.background;
 });
