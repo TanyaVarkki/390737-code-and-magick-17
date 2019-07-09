@@ -33,7 +33,7 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
-  ctx.fillStyle = '000';
+  ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
   ctx.textBaseline = 'hanging';
   ctx.fillText('Ура вы победили!', CLOUD_X + GAP * 5, CLOUD_Y + GAP);
@@ -42,7 +42,7 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
-    ctx.fillStyle = '000';
+    ctx.fillStyle = '#000';
     ctx.fillText(names[i], CLOUD_X + GAP * 5 + (BAR_WIDTH + BAR_DISTANCE) * i, CLOUD_Y + TEXT_HEIGHT + FONT_GAP + BAR_HEIGHT + GAP);
     ctx.fillText(Math.round(times[i]), CLOUD_X + GAP * 5 + (BAR_WIDTH + BAR_DISTANCE) * i, CLOUD_Y + TEXT_HEIGHT + (BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime));
 
