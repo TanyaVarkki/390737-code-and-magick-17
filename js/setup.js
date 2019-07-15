@@ -66,20 +66,23 @@ setupClose.addEventListener('keydown', function (evt) {
 
 // изменение цвета мантии по клику
 setupWisardCoatColor.addEventListener('click', function () {
-  setupWisardCoatColor.style.fill = getRandomItem(WIZARD_COAT_COLORS);
-  coatColorInput.value = setupWisardCoatColor.style.fill;
+  var newCoatColor = getRandomItem(WIZARD_COAT_COLORS);
+  setupWisardCoatColor.style.fill = newCoatColor;
+  coatColorInput.value = newCoatColor;
 });
 
 // изменение цвета глаз по клику
 setupWisardEyesColor.addEventListener('click', function () {
-  setupWisardEyesColor.style.fill = getRandomItem(WIZARD_EYES_COLORS);
-  eyesColorInput.value = setupWisardEyesColor.style.fill;
+  var newEyesColor = getRandomItem(WIZARD_EYES_COLORS);
+  setupWisardEyesColor.style.fill = newEyesColor;
+  eyesColorInput.value = newEyesColor;
 });
 
 // изменение цвета фаербола по клику
 setupFireballColor.addEventListener('click', function () {
-  setupFireballColor.style.background = getRandomItem(FIREBALL_COLORS);
-  fireballColorInput.value = setupFireballColor.style.background;
+  var newFireballColor = getRandomItem(FIREBALL_COLORS);
+  setupFireballColor.style.background = newFireballColor;
+  fireballColorInput.value = newFireballColor;
 });
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
