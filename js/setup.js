@@ -11,6 +11,7 @@ var ENTER_KEYCODE = 13;
 var userDialog = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = userDialog.querySelector('.setup-close');
+var setupSubmit = userDialog.querySelector('.setup-submit');
 var setupWisardCoatColor = userDialog.querySelector('.setup-wizard .wizard-coat');
 var setupWisardEyesColor = userDialog.querySelector('.setup-wizard .wizard-eyes');
 var setupFireballColor = userDialog.querySelector('.setup-fireball-wrap');
@@ -66,20 +67,23 @@ setupClose.addEventListener('keydown', function (evt) {
 
 // изменение цвета мантии по клику
 setupWisardCoatColor.addEventListener('click', function () {
-  setupWisardCoatColor.style.fill = getRandomItem(WIZARD_COAT_COLORS);
-  coatColorInput.value = setupWisardCoatColor.style.fill;
+  var newCoatColor = getRandomItem(WIZARD_COAT_COLORS);
+  setupWisardCoatColor.style.fill = newCoatColor;
+  coatColorInput.value = newCoatColor;
 });
 
 // изменение цвета глаз по клику
 setupWisardEyesColor.addEventListener('click', function () {
-  setupWisardEyesColor.style.fill = getRandomItem(WIZARD_EYES_COLORS);
-  eyesColorInput.value = setupWisardEyesColor.style.fill;
+  var newEyesColor = getRandomItem(WIZARD_EYES_COLORS);
+  setupWisardEyesColor.style.fill = newEyesColor;
+  eyesColorInput.value = newEyesColor;
 });
 
 // изменение цвета фаербола по клику
 setupFireballColor.addEventListener('click', function () {
-  setupFireballColor.style.background = getRandomItem(FIREBALL_COLORS);
-  fireballColorInput.value = setupFireballColor.style.background;
+  var newFireballColor = getRandomItem(FIREBALL_COLORS);
+  setupFireballColor.style.background = newFireballColor;
+  fireballColorInput.value = newFireballColor;
 });
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
@@ -127,3 +131,69 @@ var wizardsNumber = createWizard(4);
 renderWizards(wizardsNumber);
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+// перетаскивание окна
+var dialogHandler = userDialog.querySelector('.upload');
+
+dialogHandler.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+  // Запомним координаты точки, с которой мы начали перемещать диалог
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+
+  var dragged = false;
+
+  // При каждом движении мыши нам нужно обновлять смещение относительно
+  // первоначальной точки, чтобы диалог смещался на необходимую величину.
+  var onMouseMove = function (moveEvt) {
+    moveEvt.preventDefault();
+    dragged = true;
+
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    };
+
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    };
+
+    userDialog.style.top = (userDialog.offsetTop - shift.y) + 'px';
+    userDialog.style.left = (userDialog.offsetLeft - shift.x) + 'px';
+  };
+
+  // При отпускании кнопки мыши нужно переставать слушать события движения мыши.
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+
+
+    // при отпускании мыши мы повесим обработчик на click, который отменит
+    // действие по умолчанию, если перемещение имело место
+    if (dragged) {
+      var onClickPreventDefault = function (clickEvt) {
+        clickEvt.preventDefault();
+        dialogHandler.removeEventListener('click', onClickPreventDefault);
+      };
+      dialogHandler.addEventListener('click', onClickPreventDefault);
+    }
+  };
+
+  // Добавим обработчики события передвижения мыши и отпускания кнопки мыши.
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+
+  // При повторном открытии/закрытии диалога, положение диалога должно сбрасываться на изначальное
+  var onCloseDialog = function () {
+    userDialog.style.top = null;
+    userDialog.style.left = null;
+  };
+
+  setupSubmit.addEventListener('click', onCloseDialog);
+  setupClose.addEventListener('click', onCloseDialog);
+});
