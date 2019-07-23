@@ -16,9 +16,9 @@
     var wizards = [];
     for (var i = 0; i < quantity; i++) {
       wizards[i] = {
-        name: window.util.getRandomItem(WIZARD_NAMES) + ' ' + window.util.getRandomItem(WIZARD_SURNAMES),
-        coatColor: window.util.getRandomItem(window.util.WIZARD_COAT_COLORS),
-        eyesColor: window.util.getRandomItem(window.util.WIZARD_EYES_COLORS)
+        name: window.utils.getRandomItem(WIZARD_NAMES) + ' ' + window.utils.getRandomItem(WIZARD_SURNAMES),
+        coatColor: window.utils.getRandomItem(window.utils.WIZARD_COAT_COLORS),
+        eyesColor: window.utils.getRandomItem(window.utils.WIZARD_EYES_COLORS)
       };
     }
     return wizards;
