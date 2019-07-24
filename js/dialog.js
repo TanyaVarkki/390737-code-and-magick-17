@@ -12,7 +12,7 @@
   // закрытие окна при нажатии эскейп, при условии,
   // что поле ввода имени не находится в фокусе
   var onPopupEscPress = function (evt) {
-    if (evt.keyCode === window.util.ESC_KEYCODE && userDialog.querySelector('.setup-user-name:focus') === null) {
+    if (evt.keyCode === window.utils.ESC_KEYCODE && userDialog.querySelector('.setup-user-name:focus') === null) {
       closePopup();
     }
   };
@@ -38,7 +38,7 @@
 
   // открытие окна нажатием на энтер,если фокус на иконке пользователя
   setupOpen.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    window.utils.isEnterEvent(evt, openPopup);
   });
 
   // закрытие окна по клику на крестик
@@ -48,7 +48,7 @@
 
   // закрытие окна нажатием на энтер, если фокус на крестике
   setupClose.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
+    window.utils.isEnterEvent(evt, closePopup);
   });
 
   // реализуем перетаскивание окна
@@ -116,7 +116,7 @@
 
     // при закрытии диалога кнопкой esc
     var onEscCLoseDialog = function (escCloseEvt) {
-      window.util.isEscEvent(escCloseEvt, onCloseDialog);
+      window.utils.isEscEvent(escCloseEvt, onCloseDialog);
     };
     document.addEventListener('keydown', onEscCLoseDialog);
 

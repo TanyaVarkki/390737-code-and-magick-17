@@ -13,21 +13,21 @@
 
   // изменение цвета мантии по клику
   setupWisardCoatColor.addEventListener('click', function () {
-    var newCoatColor = window.util.getRandomItem(window.util.WIZARD_COAT_COLORS);
+    var newCoatColor = window.utils.getRandomItem(window.utils.WIZARD_COAT_COLORS);
     setupWisardCoatColor.style.fill = newCoatColor;
     coatColorInput.value = newCoatColor;
   });
 
   // изменение цвета глаз по клику
   setupWisardEyesColor.addEventListener('click', function () {
-    var newEyesColor = window.util.getRandomItem(window.util.WIZARD_EYES_COLORS);
+    var newEyesColor = window.utils.getRandomItem(window.utils.WIZARD_EYES_COLORS);
     setupWisardEyesColor.style.fill = newEyesColor;
     eyesColorInput.value = newEyesColor;
   });
 
   // изменение цвета фаербола по клику
   setupFireballColor.addEventListener('click', function () {
-    var newFireballColor = window.util.getRandomItem(window.util.FIREBALL_COLORS);
+    var newFireballColor = window.utils.getRandomItem(window.utils.FIREBALL_COLORS);
     setupFireballColor.style.background = newFireballColor;
     fireballColorInput.value = newFireballColor;
   });
